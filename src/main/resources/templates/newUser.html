@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Customer login Pages</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container-fluid sticky-top">
+		<div class="row">
+			<nav class="navbar navbar-light bg-success sticky-top">
+				<form class="container-fluid justify-content-start">
+					<a href="adminLogin"><button class="btn btn-outline-light me-2" type="button">Login
+							Admin</button></a>
+					<a href="customerLogin"><button class="btn btn-outline-light me-2" type="button">Login
+							Customer</button></a>
+					<a href="newUser"><button class="btn btn-light me-2" type="button">New User</button></a>
+				</form>
+			</nav>
+		</div>
+	</div>
+
+	<div class="container p-5 ">
+		<div class="row">
+			<div class="col-lg-5 offset-lg-3">
+				<div class="card">
+					<div class="card-header text-center fs-4">
+						<img src="image/activateAccount.png" class="img" alt="home page picture" height="66">
+					</div>
+					<th:block th:if="${error} != null">
+						<h4 class="text-center text-danger">[[${error}]]</h4>
+					</th:block>
+					<th:block th:text="${@adminServiceImp.removeSessionMessage()}"></th:block>
+					<div class="card-body">
+						<form action="newUserVerify" id="myForm" method="post">
+							<div class="mb-3">
+								<label class="form-label">Enter your registered mobile number</label>
+								<input type="number" class="form-control" id="pno" name="contact"
+									oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Enter your registered account number</label>
+								<input type="number" class="form-control" name="registrationNumber" id="rno"
+									oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8)">
+							</div>
+
+							<div class="d-grid gap-2">
+								<input class="btn btn-success" type="submit" value="Login">
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+
+		document.getElementById('myForm').addEventListener('submit', function (event) {
+			var rNo = document.getElementById('rno').value;
+			var pNo = document.getElementById('pno').value;
+
+
+			if (rNo !== '' && oNo !== '') {
+
+
+			} else {
+				event.preventDefault();
+				alert('Both field are reqired...!!!');
+			}
+
+			//alert('Today Date is'+todayDate+'and acNo '+acNo);
+
+		});
+	</script>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

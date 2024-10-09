@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Add Customer</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+	<th:block th:if="${session.msg == null}">
+
+		<script th:inline="javascript">
+			/* Redirect to home page if session exists */
+			window.location.href = '/';
+		</script>
+
+	</th:block>
+	<nav class="navbar navbar-expand-lg navbar-light bg-success">
+		<div class="container-fluid">
+			<a class="navbar-brand text-light" href="adminLogout">Logout</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active text-light fs-5 " href="adminDashboard">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active text-dark fs-5 bg-info border border-light rounded-3" href="customerRegister">Add_Customer</a>
+					</li>
+					<!--		
+					<li class="nav-item">
+						<a class="nav-link active fs-5 text-light" href="customerAccountAdd">Add Account</a>
+					</li>
+					-->
+					<li class="nav-item">
+						<a class="nav-link active fs-5 text-light" href="totalCustomer">Total_Customer</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active fs-5 text-light" href="totalTransaction">Total_Transaction</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active fs-5 text-light" href="customerDetails">Customer_Details</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid mt-3">
+		<div class="row">
+			<div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1">
+				<div class="card">
+					<div class="card-header text-center fs-4">Customer Register...!!</div>
+					<div class="card-body">
+
+						<form class="row g-4" id="myForm" action="registerCustomer" method="post">
+
+							<div class="row g-3">
+								<div class="col-lg-3 col-md-12">
+									<label class="form-label fw-bold">Full Name</label>
+									<input type="text" class="form-control" name="name" id="name"
+										placeholder="Full Name" aria-label="First name" required>
+								</div>
+								<div class="col-lg-3 col-md-12">
+									<label class="form-label fw-bold">PhoneNo</label>
+									<input type="number" maxlength="10" class="form-control" name="contact" id="contact"
+										placeholder="+977 phone numnber" required
+										oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+								</div>
+
+
+								<div class="col-lg-3 col-md-12 ">
+									<label for="inputEmail4" class="form-label fw-bold">Email</label> <input
+										type="email" name="email" id="email" class="form-control" required
+										placeholder="example@gmail.com">
+								</div>
+
+								<div class="col-lg-3 col-md-12">
+									<label for="inputEmail4" class="form-label fw-bold">Address</label>
+									<input type="text" class="form-control" name="address" id="address"
+										placeholder="Permanent Address" aria-label="First name" required>
+								</div>
+
+
+							</div>
+
+
+
+
+
+
+							<!--<div class="col-md-6 ">
+									<label for="inputEmail4" class="form-label" >Email</label>
+								<input type="email" name="email" id="email" class="form-control" required
+									placeholder="example@gmail.com">
+							</div>-->
+
+
+
+
+
+							<div class="row mt-4 ">
+
+
+
+
+								<div class="col-lg-3 col-md-12 ">
+									<label for="inputEmail4" class="form-label fw-bold">Select Gender</label>
+									<select class="form-select" name="gender" id="gender"
+										aria-label="Default select example">
+
+										<option value="male">Male</option>
+										<option value="female">Female</option>
+										<option value="other">Other</option>
+									</select>
+								</div>
+								<div class="col-lg-3 col-md-12">
+									<label for="inputEmail4" class="form-label fw-bold">Profession</label>
+									<input type="text" class="form-control" name="profession" id="profession"
+										placeholder="Profession Eg:- Teacher" aria-label="First name" required>
+								</div>
+
+								<div class="col-lg-3 col-md-12">
+									<label for="inputCity" class="form-label fw-bold">Citizenship No</label>
+									<input type="number" name="citizenshipNo" class="form-control" id="citizenshipNo"
+										placeholder="Eg:- 38-03-77-07460"
+										oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 12)">
+								</div>
+
+								<div class="col-lg-3 ">
+									<label for="inputCity" class="form-label fw-bold">Marital Status</label>
+									<select class="form-select" name="maritalStatus" id="maritalStatus"
+										aria-label="Default select example">
+
+										<option value="single">Single</option>
+										<option value="married">Married</option>
+										<option value="divorced">Divorced</option>
+										<option value="widowed">Widowed</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-12">
+								<label for="inputCity" class="form-label fw-bold">Date of Birth</label>
+
+								<input type="date" name="dob" class="form-control" id="dob" onchange="validateDOB()"
+									required>
+
+							</div>
+
+				
+
+							<div class="col-lg-4 col-md-12">
+								<label for="inputCity" class="form-label fw-bold">Account Registration Date</label>
+								<input type="datetime-local" name="registrationDate" id="registrationDate"
+									th:value="${realdatetime}" class="form-control" readonly>
+							</div>
+
+							<div class="col-lg-4 col-md-12">
+								<label for="inputCity" class="form-label fw-bold">Account Registration
+									Number</label>
+								<input type="number" class="form-control" name="registrationNumber"
+									id="registrationNumber" th:value="${acNo}" readonly>
+							</div>
+
+
+							<!-- Nominee details  start-->
+							<div class="row g-3">
+								<div class="col-lg-3 col-md-12">
+									<label class="form-label fw-bold">Nominee Name</label>
+									<input type="text" class="form-control" name="nomineeName" id="name"
+										placeholder="Nominee Full Name" aria-label="First name" required>
+								</div>
+
+								<div class="col-lg-3 col-md-12">
+									<label for="inputEmail4" class="form-label fw-bold">Relation</label>
+									<input type="text" class="form-control" name="relation" id="address"
+										placeholder="Eg: husband/wife/Son" aria-label="First name" required>
+								</div>
+
+								<div class="col-md-3">
+									<label class="form-label fw-bold">Nominee Phone No</label>
+									<input type="number" maxlength="10" class="form-control" name="nomineeContact" id="contact"
+										placeholder="98.. phone numnber" required
+										oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+								</div>
+
+
+								<div class="col-lg-3 col-md-12">
+									<label for="inputEmail4" class="form-label fw-bold">Nominee Address</label>
+									<input type="text" class="form-control" name="nomineeAddress" id="address"
+										placeholder="Permanent Address" aria-label="First name" required>
+								</div>
+
+								<!-- Nominee details end -->
+
+							</div>
+
+
+
+							<div class="row g-1">
+
+								<div class="col-lg-6 col-md-12">
+									<p id="dobError" style="color: red;"></p>
+								</div>
+							</div>
+
+
+
+							<div class="d-grid gap-1">
+								<button type="submit" class="btn btn-success">Register Customer</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+
+		document.getElementById('myForm').addEventListener('submit', function (event) {
+			var registrationNumber = document.getElementById('registrationNumber').value;
+			var name = document.getElementById('name').value;
+			var email = document.getElementById('email').value;
+			var contact = document.getElementById('contact').value;
+
+			var address = document.getElementById('address').value;
+			var gender = document.getElementById('gender').value;
+			var dob = document.getElementById('dob').value;
+			var citizenshipNo = document.getElementById('citizenshipNo').value;
+
+			var profession = document.getElementById('profession').value;
+			var maritalStatus = document.getElementById('maritalStatus').value;
+			var registrationDate = document.getElementById('registrationDate').value;
+
+			if (registrationNumber !== '' && name !== '' && email !== '' && contact !== ''
+				&& address !== '' && gender !== '' && dob !== '' && citizenshipNo !== ''
+				&& profession!== '' && maritalStatus !== '' && registrationDate !== '') {
+
+				if (contact.length != 10) {
+					event.preventDefault();
+					alert('contact must be 10 digit..!!!');
+				} else {
+
+				}
+
+
+			} else {
+				event.preventDefault();
+				alert('All fields are reqired...!!!');
+			}
+
+			//alert('Today Date is'+todayDate+'and acNo '+acNo);
+
+		});
+
+
+		//------------------make name field only alphabet-------------
+
+		document.addEventListener('DOMContentLoaded', function () {
+			var inputField = document.getElementById('name');
+
+			inputField.addEventListener('input', function () {
+				var inputValue = this.value;
+				var alphabeticValue = inputValue.replace(/[^a-z A-Z]/g, ''); // Remove non-alphabetic characters
+
+				if (inputValue !== alphabeticValue) {
+					this.value = alphabeticValue;
+				}
+			});
+		});
+
+		//------------validate date of birth with registration date------------------
+
+		function validateDOB() {
+
+			var dobInput = document.getElementById('dob').value;
+			var dob = new Date(dobInput);
+			var currentDate = new Date();
+			var fiveYearsAgo = new Date(currentDate.getFullYear() - 16, currentDate.getMonth(), currentDate.getDate());
+
+			var errorField = document.getElementById('dobError');
+
+			if (dob > fiveYearsAgo) {
+				errorField.textContent = "Customers must be at least 16 years old to register.";
+				document.getElementById('dob').value = ''; // Clear the incorrect value
+			} else {
+				errorField.textContent = '';
+			}
+		}
+
+	</script>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

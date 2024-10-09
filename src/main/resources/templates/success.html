@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="iso-8859-1">
+	<title>insert title here</title>
+</head>
+
+<body>
+
+	<h2>success </h2>
+
+	[[${oid}]]
+	<br>
+	[[${amount}]]
+	<br>
+	[[${refId}]]
+	<br>
+
+	<hr>
+
+	<body>
+		<!-- <form action="http://localhost:8080/profile" method="get"> -->
+		<form action="https://uat.esewa.com.np/epay/transrec" method="get">
+			<input th:value="${actualAmount}" name="amt" type="text"> <!-- check amount for vairifed -->
+			<input th:value="${merchantCode}" name="scd" type="text">
+			<input th:value="${oid}" name="pid" type="text">
+			<input th:value="${refId}" name="rid" type="text">
+			<input value="submit" type="submit">
+		</form>
+	</body>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Fine rate define</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+	<th:block th:if="${session.msg == null}">
+
+		<script th:inline="javascript">
+			/* Redirect to home page if session exists */
+			window.location.href = '/';
+		</script>
+
+	</th:block>
+
+	<div class="container-fluid sticky-top">
+		<div class="row">
+			<nav class="navbar navbar-expand-lg navbar-light bg-success">
+				<div class="container-fluid">
+					<a class="navbar-brand text-light" href="adminLogout">Logout</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+						aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item ms-2">
+								<a class="nav-link active fs-5 text-light border border-light rounded-3"
+									href="adminDashboard">Dashboard</a>
+							</li>
+							<li class="nav-item ms-4">
+								<a class="nav-link active fs-5 text-light border border-light rounded-3"
+									href="customerRegister">Add_Customer</a>
+							</li>
+							<!--
+						<li class="nav-item">
+						<a class="nav-link active fs-5 text-light" href="customerAccountAdd">Add_Account</a>
+					</li>
+					-->
+							<li class="nav-item ms-4">
+								<a class="nav-link active fs-5 text-light border border-light rounded-3"
+									href="depositwithdrawAmount">Deposit/Withdraw</a>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+
+
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-5 offset-lg-4">
+				<div class="card">
+					<div class="card-header text-center fs-4">Fine Rate</div>
+
+					<th:block th:if="${failed != null}">
+						<h3 class="text-danger ms-5">[[${failed}]]</h3>
+					</th:block>
+					<th:block th:if="${success != null}">
+						<h3 class="text-success ms-5">[[${success}]]</h3>
+					</th:block>
+
+					<div class="card-body">
+
+						<form action="setFineRate" id="myForm" method="post">
+
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label fw-bold">Current Rate</label>
+								</div>
+								<div class="col-lg-6">
+									<label class="form-label fw-bold">New Rate</label>
+								</div>
+							</div>
+
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">1st Month: [[${cRate.month1}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month1" id="month1" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">2nd Month: [[${cRate.month2}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month2" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">3rd Month: [[${cRate.month3}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month3" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">4th Month: [[${cRate.month4}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month4" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">5th Month: [[${cRate.month5}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month5" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">6th Month: [[${cRate.month6}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month6" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">7th Month: [[${cRate.month7}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month7" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">8th Month: [[${cRate.month8}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month8" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">9th Month: [[${cRate.month9}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month9" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">10th Month: [[${cRate.month10}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month10" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">11th Month: [[${cRate.month11}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month11" step="any">
+								</div>
+							</div>
+							<div class=" row ">
+								<div class="col-lg-6">
+									<label class="form-label">12th Month: [[${cRate.month12}]] %</label>
+								</div>
+								<div class="col-lg-6">
+									<input class="" type="number" name="month12" step="any">
+								</div>
+							</div>
+
+
+
+
+							<div class="row ">
+								<div class="col-lg-5 col-md-12">
+									<label for="exampleInputPassword1" class="form-label">Account Type</label>
+
+								</div>
+
+								<div class="col-lg-7 col-md-12 ">
+
+									<select class="form-select" name="accountType" id="accountType">
+
+										<option value="regularmonthlysaving">Monthly_Saving</option>
+
+									</select>
+								</div>
+							</div>
+
+							<div class="d-grid">
+								<input class="btn btn-success" type="submit" value="Update Rate">
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+
+		document.getElementById('myForm').addEventListener('submit', function (event) {
+			var month1 = document.getElementById('month1').value;
+
+
+
+			if (isNaN(month1) || month1 < 0) {
+
+				event.preventDefault();
+				alert('Please enter a non-negative value....!!!');
+			} else {
+
+			}
+
+			//alert('Today Date is'+todayDate+'and acNo '+acNo);
+
+		});
+
+
+
+	</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

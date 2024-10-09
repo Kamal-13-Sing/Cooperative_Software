@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Admin Logout page</h1>
+
+<th:block th:if="${session.msg} != null">
+	[[${@adminServiceImp.removeSessionMessage()}]]
+	<script th:inline="javascript">
+		window.location.href='/';
+	</script>
+</th:block>
+
+
+<th:block th:if="${session.msg} == null">
+
+	<script th:inline="javascript">
+		window.location.href='/';
+	</script>
+	
+</th:block>
+
+<h1>Customer Logut page</h1>
+
+<th:block th:if="${session.customersession} != null">
+	[[${@CustomerRegisterServiceImp.removeSessionMessage()}]]
+	<script th:inline="javascript">
+		window.location.href='/';
+	</script>
+</th:block>
+
+</body>
+</html>

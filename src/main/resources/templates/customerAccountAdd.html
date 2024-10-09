@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Add Customer Account</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+	<th:block th:if="${session.msg == null}">
+
+		<script th:inline="javascript">
+			/* Redirect to home page if session exists */
+			window.location.href = '/';
+		</script>
+
+	</th:block>
+	<nav class="navbar navbar-expand-lg navbar-light bg-success">
+		<div class="container-fluid">
+			<a class="navbar-brand text-light" href="adminLogout">Logout</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active text-light fs-5 " href="adminDashboard">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active fs-5 text-light" href="customerRegister">Add Customer</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active fs-5 text-dark bg-info" href="customerAccountAdd">Add Account</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid p-5">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1">
+				<div class="card">
+					<div class="card-header text-center fs-4">Add Account...!!</div>
+					<div class="card-body">
+
+						<form class="row g-4" id="myForm" action="addCustomer" method="post">
+
+							<div class="row g-3">
+
+								<div class="col-lg-4 col-md-12">
+									<label class="form-label">Customer Account No</label>
+									<input type="number" id="acNo" class="form-control" name="accountNo"
+										th:value="${rNo}" readonly>
+								</div>
+
+								<div class="col-lg-4 col-md-12">
+									<label class="form-label">Account Type</label>
+									<select class="form-select" id="acType" name="accountType"
+										aria-label="Default select example">
+
+										<option value="regularmonthlysaving">Monthly Saving</option>
+
+
+									</select>
+								</div>
+								<div class="col-md-4 ">
+									<label class="form-label">Amount (200 - 5000)</label>
+									<input type="number" min="200" max="5000" id="savingAmount" class="form-control" name="savingAmount"
+										value="0">
+								</div>
+							</div>
+
+							<div class="col-md-6 ">
+								<label class="form-label">Balance</label>
+								<input type="number" id="balance" class="form-control" name="balance" value="0">
+								<!-- deposit count -->
+								<input type="hidden" id="dcount" class="form-control" name="fineMonthCount" value="-1">
+								<input type="hidden" id="dcount" class="form-control" name="depositCount" value="1">
+							</div>
+							<div class="col-md-6"> 
+								<label class="form-label">Account Status</label>
+								<select class="form-select" id="status" name="status"
+									aria-label="Default select example">
+
+									<option value="active">Active</option>
+									<option value="lock">Lock</option>
+
+								</select>
+							</div>
+
+
+							<div class="d-grid gap-2">
+								<button type="submit" class="btn btn-success">Add Customer Account</button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<script>
+
+		document.getElementById('myForm').addEventListener('submit', function (event) {
+			var acNo = document.getElementById('acNo').value;
+			var acType = document.getElementById('acType').value;
+			var blnc = document.getElementById('balance').value;
+			var status = document.getElementById('status').value;
+			var savingAmt = document.getElementById('savingAmount').value;
+			if (acNo !== '' && acType !== '' && blnc !== '' && status !== '' && savingAmt !== '') {
+
+				if (savingAmt > 5000 || savingAmt < 200) {
+
+					event.preventDefault();
+					alert('Saving amount must be 200 to 5000 ...!!!');
+
+				} else {
+
+					if (blnc != savingAmt) {
+						event.preventDefault();
+						alert('Balance must be equal to saving amount ...!!!');
+						
+					} else {
+
+					}
+
+				}
+
+			} else {
+				event.preventDefault();
+				alert('All fields are reqired...!!!');
+			}
+
+			//alert('Today Date is'+todayDate+'and acNo '+acNo);
+
+		});
+	</script>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
